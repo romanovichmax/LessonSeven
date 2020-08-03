@@ -1,23 +1,23 @@
 package TaskFour.RemoteDevice;
 
 public class TV extends TVDevice {
-    int chanel = 1;
+    private int chanel = 1;
+    private int volume = 1;
 
-    public TV() {
-        modelName = "Samsung";
+    public TV(String modelName) {
+        this.modelName = modelName;
     }
 
     @Override
     public void powerOn() {
         isOn = true;
-        System.out.println("TV is ON");
+        System.out.println(modelName + " TV is ON");
     }
 
     @Override
     public void powerOff() {
         isOn = false;
-        System.out.println("TV is OFF");
-
+        System.out.println(modelName + " TV is OFF");
     }
 
     @Override
@@ -28,22 +28,32 @@ public class TV extends TVDevice {
 
     @Override
     public void currentChannel() {
-        System.out.println("Current Chanel: " + chanel);
+        System.out.println("Current chanel: " + chanel);
     }
 
     @Override
     public void upVolume() {
-        System.out.println("The volume is up");
-
+        if (volume == 10) {
+            System.out.println("Maximum volume");
+        } else {
+            volume++;
+            System.out.println("The volume is up to " + volume);
+        }
     }
 
     @Override
     public void downVolume() {
-        System.out.println("The volume is down");
+        if (volume == 0) {
+            System.out.println("Volume is muted");
+        } else {
+            volume--;
+            System.out.println("The volume is down to " + volume);
+        }
     }
 
     @Override
     public void mute() {
-        System.out.println("TV is muted");
+        volume = 0;
+        System.out.println(modelName + " TV is muted");
     }
 }
